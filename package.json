@@ -1,0 +1,46 @@
+{
+  "name": "node-ciscospark",
+  "version": "0.9.0",
+  "description": "Simple Javascript wrapper for Cisco Spark API",
+  "homepage": "https://github.com/joelee/ciscospark",
+  "main": "build/src/index.js",
+  "scripts": {
+    "test": "gulp test",
+    "build": "gulp build",
+    "docs": "gulp docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:joelee/ciscospark.git"
+  },
+  "keywords": [
+    "ciscospark",
+    "spark",
+    "cisco"
+  ],
+  "author": "Joseph Lee <joselee2@cisco.com> (https://uk.linkedin.com/in/joeworks)",
+  "license": "MIT",
+  "files": [
+    "build"
+  ],
+  "bugs": {
+    "url": "https://github.com/joelee/ciscospark/issues"
+  },
+  "dependencies": {
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^3.5.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-mocha": "^3.0.1",
+    "gulp-util": "^3.0.8",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.3.0"
+  }
+}
