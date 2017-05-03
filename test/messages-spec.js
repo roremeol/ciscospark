@@ -1,7 +1,7 @@
 'use strict'
 /* eslint-env mocha */
 
-const Spark = require('../build/src')
+const Spark = require('../src')
 const expect = require('chai').expect
 
 const TEST_ACCESSTOKEN = '**TestAccessToken**'
