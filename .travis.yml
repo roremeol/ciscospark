@@ -10,19 +10,17 @@ node_js:
 
 before_install:
   - npm install -g gulp-cli
-
   - travis_retry npm install
 
 install:
+  - npm install -g check-node-version
   - npm install -g codecov
 
 script:
-  - gulp build && gulp mocha
-  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly ./test -- -R spec
-  - codecov
+  - check-node-version --node '>=4.0.0' && ( istanbul cover ./node_modules/mocha/bin/_mocha ./test -- -R spec; codecov )
+  - gulp test:build
 
 matrix:
   allow_failures:
     - node_js: "0.10"
     - node_js: "0.12"
-    - node_js: "7"

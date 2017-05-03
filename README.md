@@ -4,7 +4,7 @@ This is a JavaScript wrapper for [Cisco Spark API](https://developer.ciscospark.
 
 [![NPM](https://nodei.co/npm/node-ciscospark.png)](https://nodei.co/npm/node-ciscospark/)
 
-[![npm](https://img.shields.io/npm/v/node-ciscospark.svg)](https://www.npmjs.com/package/node-ciscospark)[![Build Status](https://travis-ci.org/joelee/ciscospark.svg?branch=master)](https://travis-ci.org/joelee/ciscospark)[![codecov](https://codecov.io/gh/joelee/ciscospark/branch/master/graph/badge.svg)](https://codecov.io/gh/joelee/ciscospark)[![dependencies Status](https://david-dm.org/joelee/ciscospark/status.svg)](https://david-dm.org/joelee/ciscospark)
+[![npm](https://img.shields.io/npm/v/node-ciscospark.svg)](https://www.npmjs.com/package/node-ciscospark) [![Build Status](https://travis-ci.org/joelee/ciscospark.svg?branch=master)](https://travis-ci.org/joelee/ciscospark) [![codecov](https://codecov.io/gh/joelee/ciscospark/branch/master/graph/badge.svg)](https://codecov.io/gh/joelee/ciscospark) [![dependencies Status](https://david-dm.org/joelee/ciscospark/status.svg)](https://david-dm.org/joelee/ciscospark)
 
 
 ## Installation

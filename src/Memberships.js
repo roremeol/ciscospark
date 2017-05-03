@@ -29,7 +29,7 @@ class Memberships extends CiscoSpark {
    *
    */
   create (params, callback) {
-    if (!params || !params.roomId) return callback(new Error('Invalid params. Require roomId'))
+    if (!params || !params.teamId) return callback(new Error('Invalid params. Require teamId'))
     if (!params.personId && !params.personEmail) return callback(new Error('Invalid params. Require personId or personEmail'))
     return super.create(params, callback)
   }

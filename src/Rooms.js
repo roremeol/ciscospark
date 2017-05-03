@@ -33,6 +33,7 @@ class Rooms extends CiscoSpark {
     if (typeof params === 'string') {
       params = { title: params }
     }
+    if (!params || !params.title) return callback(new Error('Invalid Params. Require title'))
     return super.create(params, callback)
   }
 }

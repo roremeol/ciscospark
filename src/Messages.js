@@ -28,10 +28,7 @@ class Messages extends CiscoSpark {
         return callback(new Error('Invalid Params. Require roomId'))
       }
     }
-    return this.request({
-      method: 'GET',
-      qs: params
-    }, callback)
+    return super.list(params, callback)
   }
 
   /**
@@ -43,10 +40,7 @@ class Messages extends CiscoSpark {
    */
   create (params, callback) {
     if (params && (params.roomId || params.toPersonId || params.toPersonEmail)) {
-      return this.request({
-        method: 'POST',
-        form: params
-      }, callback)
+      return super.create(params, callback)
     } else {
       return callback(new Error('Invalid Params. Require roomId, toPersonId or toPersonEmail'))
     }
@@ -74,20 +68,14 @@ class Messages extends CiscoSpark {
     if (!messageId || typeof messageId !== 'string') {
       return callback(new Error('Message ID is missing or in the wrong format'))
     }
-    return this.request({
-      method: 'GET',
-      url: `${this.apiUrl}/${messageId}`
-    }, callback)
+    return super.get(messageId, callback)
   }
 
   delete (messageId, callback) {
     if (!messageId || typeof messageId !== 'string') {
       return callback(new Error('Message ID is missing or in the wrong format'))
     }
-    return this.request({
-      method: 'DELETE',
-      url: `${this.apiUrl}/${messageId}`
-    }, callback)
+    return super.delete(messageId, callback)
   }
 }
 

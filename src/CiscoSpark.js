@@ -27,7 +27,7 @@ class CiscoSpark {
   }
 
   checkId (id) {
-    return (id && typeof id !== 'string')
+    return (id && (typeof id === 'string' || typeof id === 'number'))
   }
 
   /**

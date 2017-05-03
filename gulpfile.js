@@ -16,7 +16,7 @@ var testBuildSources = [ buildDir + '/test/**/*-spec.js' ]
 var babelOptions = {
   presets: ['es2015']
 }
-var dirFirst = (dir) => (dir.substr(0, dir.indexOf('/')) || '')
+function dirFirst (dir) { return (dir.substr(0, dir.indexOf('/')) || '') }
 
 gulp.task('clean', () => {
   return del([
@@ -52,9 +52,9 @@ gulp.task('docs', (cb) => {
     .pipe(jsdoc(config, cb))
 })
 
-gulp.task('mocha', () => {
+gulp.task('test:build', ['build'], () => {
   gulp.src(testBuildSources)
     .pipe(mocha())
 })
 
-gulp.task('default', ['docs', 'test'])
+gulp.task('default', ['test:build'])
