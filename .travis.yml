@@ -12,8 +12,13 @@ before_install:
   - npm install -g gulp
   - travis_retry npm install
 
+install:
+  - npm install -g codecov
+
 script:
   - gulp build && gulp mocha
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - codecov
 
 matrix:
   allow_failures:

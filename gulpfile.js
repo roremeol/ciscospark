@@ -1,19 +1,22 @@
 'use strict'
 
-const gulp = require('gulp')
-const babel = require('gulp-babel')
-const mocha = require('gulp-mocha')
-const istanbul = require('gulp-istanbul')
-const jsdoc = require('gulp-jsdoc3')
-const del = require('del')
+var gulp = require('gulp')
+var babel = require('gulp-babel')
+var mocha = require('gulp-mocha')
+var istanbul = require('gulp-istanbul')
+var jsdoc = require('gulp-jsdoc3')
+var del = require('del')
 
-const jsSources = [ 'src/**/*.js' ]
-const testSources = [ 'test/**/*-spec.js' ]
-const babelOptions = {
+
+var buildDir = 'build'
+var jsSources = [ 'src/**/*.js', 'test/**/*.js' ]
+var testSources = [ 'test/**/*-spec.js' ]
+var testBuildSources = [ buildDir + '/test/**/*-spec.js' ]
+
+var babelOptions = {
   presets: ['es2015']
 }
-const buildDir = 'build'
-const dirFirst = (dir) => (dir.substr(0, dir.indexOf('/')) || '')
+var dirFirst = (dir) => (dir.substr(0, dir.indexOf('/')) || '')
 
 gulp.task('clean', () => {
   return del([
@@ -36,7 +39,7 @@ gulp.task('pre-test', () => {
   .pipe(istanbul.hookRequire())
 })
 
-gulp.task('test', ['pre-test', 'build'], () => {
+gulp.task('test', ['pre-test'], () => {
   return gulp.src(testSources)
     .pipe(mocha())
     .pipe(istanbul.writeReports())
@@ -50,7 +53,7 @@ gulp.task('docs', (cb) => {
 })
 
 gulp.task('mocha', () => {
-  gulp.src(testSources)
+  gulp.src(testBuildSources)
     .pipe(mocha())
 })
 
