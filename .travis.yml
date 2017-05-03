@@ -9,7 +9,8 @@ node_js:
   - "7"
 
 before_install:
-  - npm install -g gulp
+  - npm install -g gulp-cli
+
   - travis_retry npm install
 
 install:
@@ -17,7 +18,7 @@ install:
 
 script:
   - gulp build && gulp mocha
-  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly ./test -- -R spec
   - codecov
 
 matrix:
