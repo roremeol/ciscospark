@@ -4,26 +4,31 @@ This is a JavaScript wrapper for [Cisco Spark API](https://developer.ciscospark.
 
 [![NPM](https://nodei.co/npm/node-ciscospark.png)](https://nodei.co/npm/node-ciscospark/)
 
-[![npm](https://img.shields.io/npm/v/node-ciscospark.svg)](https://www.npmjs.com/package/node-ciscospark) [![Build Status](https://travis-ci.org/joelee/ciscospark.svg?branch=master)](https://travis-ci.org/joelee/ciscospark) [![codecov](https://codecov.io/gh/joelee/ciscospark/branch/master/graph/badge.svg)](https://codecov.io/gh/joelee/ciscospark) [![dependencies Status](https://david-dm.org/joelee/ciscospark/status.svg)](https://david-dm.org/joelee/ciscospark)
+[![npm](https://img.shields.io/npm/v/node-ciscospark.svg)](https://www.npmjs.com/package/node-ciscospark) [![Build Status](https://travis-ci.org/joelee/ciscospark.svg?branch=master)](https://travis-ci.org/joelee/ciscospark) [![codecov](https://codecov.io/gh/joelee/ciscospark/branch/master/graph/badge.svg)](https://codecov.io/gh/joelee/ciscospark) [![dependencies Status](https://david-dm.org/joelee/ciscospark/status.svg)](https://david-dm.org/joelee/ciscospark) [![Known Vulnerabilities](https://snyk.io/test/github/joelee/ciscospark/badge.svg)](https://snyk.io/test/github/joelee/ciscospark)
 
 
 ## Installation
 
-``` sh
+```bash
 $ npm install node-ciscospark
 ```
 
-## Usage Examples
+## Quick Start
 
 ### API
-``` js
+
+```javascript
 var CiscoSpark = require('node-ciscospark');
 
 var spark = new CiscoSpark(accessToken);
 ```
 
+> `accessToken` can also be set in the `CISCOSPARK_ACCESS_TOKEN` environment variable.
+
 **[Create a Message](https://developer.ciscospark.com/endpoint-messages-post.html)**
-``` js
+
+```javascript
+// spark.messages.create(parameters, callback)
 spark.messages.create({
   roomId: sparkChatRoomId,
   text: 'This is a test'
@@ -34,7 +39,9 @@ spark.messages.create({
 ```
 
 **[List Rooms](https://developer.ciscospark.com/endpoint-rooms-get.html)**
+
 ``` js
+// spark.rooms.list(parameters, callback)
 spark.rooms.list({
   teamId: sparkTeamId
 }, function (err, result) {
@@ -42,6 +49,29 @@ spark.rooms.list({
   console.log(result);
 });
 ```
+
+## Spark API Supported
+
+- [Messages](https://developer.ciscospark.com/resource-messages.html)
+- [People](https://developer.ciscospark.com/resource-people.html)
+- [Rooms](https://developer.ciscospark.com/resource-rooms.html)
+- [Memberships](https://developer.ciscospark.com/resource-memberships.html)
+- [Teams](https://developer.ciscospark.com/resource-teams.html)
+- [Team Memberships](https://developer.ciscospark.com/resource-team-memberships.html)
+- [Webhooks](https://developer.ciscospark.com/resource-webhooks.html)
+
+### [Messages](https://developer.ciscospark.com/resource-messages.html)
+
+API methods | Usage
+----------- | -----
+[List Messages](https://developer.ciscospark.com/endpoint-messages-get.html) | `spark.messages.list(parameters, callback)`
+[Create a Message](https://developer.ciscospark.com/endpoint-messages-post.html) | `spark.messages.create(parameters, callback)`
+Create a Message to a Room | `spark.messages.createToRoom(roomId, markdownMessage, callback)`
+Create a Message to a Person | `spark.messages.createToPersonId(personId, markdownMessage, callback)`
+Create a Message to a Person's email | `spark.messages.createToPersonEmail(email, markdownMessage, callback)`
+[Get Message Details](https://developer.ciscospark.com/endpoint-messages-messageId-get.html) | `spark.messages.get(messageId, callback)`
+[Delete a Message](https://developer.ciscospark.com/endpoint-messages-messageId-delete.html) | `spark.messages.delete(messageId, callback)`
+
 
 ## License
 
