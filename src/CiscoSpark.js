@@ -22,8 +22,11 @@ class CiscoSpark {
     if (!options.headers) options.headers = {}
     options.headers.Authorization = 'Bearer ' + this.accessToken
     if (this.userAgent) options.headers['User-Agent'] = this.userAgent
+    options.headers['Accept'] = 'application/json'
     if (typeof this._requestCallback === 'function') return this._requestCallback(options, callback)
-    return request(options, callback)
+    return request(options, (error, response, body) => {
+      callback(error, body, response)
+    })
   }
 
   checkId (id) {
