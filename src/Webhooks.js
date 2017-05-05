@@ -10,6 +10,7 @@ class Webhooks extends CiscoSpark {
   constructor (accessToken, userAgent) {
     super(accessToken, userAgent)
     this.apiUrl = 'https://api.ciscospark.com/v1/webhooks'
+    this.idName = 'webhookId'
   }
 }
 

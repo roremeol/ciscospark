@@ -5,7 +5,7 @@ const CiscoSpark = require('./CiscoSpark')
 class CiscoSparkFactory extends CiscoSpark {
   constructor (accessToken, userAgent) {
     super(accessToken)
-    this.userAgent = userAgent || 'CiscoSpark'
+    this.userAgent = userAgent || 'node-ciscospark (https://github.com/joelee/ciscospark)'
     this._instances = {}
   }
 

@@ -9,6 +9,7 @@ const CiscoSpark = require('./CiscoSpark')
 class Memberships extends CiscoSpark {
   constructor (accessToken, userAgent) {
     super(accessToken, userAgent, 'https://api.ciscospark.com/v1/memberships')
+    this.idName = 'membershipId'
   }
 
   /**

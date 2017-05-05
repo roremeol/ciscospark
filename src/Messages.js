@@ -10,6 +10,7 @@ class Messages extends CiscoSpark {
   constructor (accessToken, userAgent) {
     super(accessToken, userAgent)
     this.apiUrl = 'https://api.ciscospark.com/v1/messages'
+    this.idName = 'messageId'
   }
 
   /**

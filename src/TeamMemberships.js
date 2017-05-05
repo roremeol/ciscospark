@@ -10,6 +10,7 @@ class TeamMemberships extends CiscoSpark {
   constructor (accessToken, userAgent) {
     super(accessToken, userAgent)
     this.apiUrl = 'https://api.ciscospark.com/v1/team/memberships'
+    this.idName = 'membershipId'
   }
 
   list (params, callback) {

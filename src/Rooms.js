@@ -10,6 +10,7 @@ class Rooms extends CiscoSpark {
   constructor (accessToken, userAgent) {
     super(accessToken, userAgent)
     this.apiUrl = 'https://api.ciscospark.com/v1/rooms'
+    this.idName = 'roomId'
   }
 
   /**

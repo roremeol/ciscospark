@@ -10,6 +10,7 @@ class People extends CiscoSpark {
   constructor (accessToken, userAgent) {
     super(accessToken, userAgent)
     this.apiUrl = 'https://api.ciscospark.com/v1/people'
+    this.idName = 'personId'
   }
 
   /**

@@ -3,7 +3,6 @@
 var gulp = require('gulp')
 var babel = require('gulp-babel')
 var mocha = require('gulp-mocha')
-var istanbul = require('gulp-istanbul')
 var jsdoc = require('gulp-jsdoc3')
 var del = require('del')
 
@@ -17,6 +16,7 @@ var babelOptions = {
 }
 function dirFirst (dir) { return (dir.substr(0, dir.indexOf('/')) || '') }
 
+// Clean Build directory
 gulp.task('clean', function () {
   return del([
     buildDir + '/**/*',
@@ -24,6 +24,7 @@ gulp.task('clean', function () {
   ])
 })
 
+// Clean and Build Source
 gulp.task('build', ['clean'], function () {
   jsSources.forEach(function (src) {
     gulp.src(src)
@@ -32,27 +33,22 @@ gulp.task('build', ['clean'], function () {
   })
 })
 
-gulp.task('pre-test', function () {
-  return gulp.src(jsSources)
-  .pipe(istanbul())
-  .pipe(istanbul.hookRequire())
-})
-
-gulp.task('test', ['pre-test'], function () {
+// Test on Sources
+gulp.task('test', function () {
   return gulp.src(testSources)
     .pipe(mocha())
-    .pipe(istanbul.writeReports())
-    .pipe(istanbul.enforceThresholds({ thresholds: { global: 60 } }))
 })
 
+// Generate JS Docs
 gulp.task('docs', function (cb) {
   var config = require('./jsdocs.json')
-  gulp.src(jsSources, {read: false})
+  return gulp.src(jsSources, {read: false})
     .pipe(jsdoc(config, cb))
 })
 
+// Build and Run Tests on Build Sources
 gulp.task('test:build', ['build'], function () {
-  gulp.src(testBuildSources)
+  return gulp.src(testBuildSources)
     .pipe(mocha())
 })
 

@@ -18,7 +18,7 @@ describe('CiscoSpark.memberships', function () {
         timestamp: Date.now()
       })
     }
-    this.instance = this.spark.memberships;
+    this.instance = this.spark.memberships
   })
 
   it('should list Memberships in a Team', function (done) {

@@ -15,9 +15,11 @@ class CiscoSpark {
       this.apiUrl = apiUrl
       this._requestCallback = null
     }
+    this.idName = 'id'
   }
 
   request (options, callback) {
+    if (!this.apiUrl) return callback(new Error('ApiUrl is not set'))
     if (!options.url && this.apiUrl) options.url = this.apiUrl
     if (!options.headers) options.headers = {}
     options.headers.Authorization = 'Bearer ' + this.accessToken
@@ -38,12 +40,11 @@ class CiscoSpark {
    *
    */
   list (params, callback) {
-    if (!this.apiUrl) return callback(new Error('ApiUrl is not set'))
-    if (!params) params = {}
+    const args = this.getArgs(params, callback)
     return this.request({
       method: 'GET',
-      qs: params
-    }, callback)
+      qs: args.params
+    }, args.callback)
   }
 
   /**
@@ -51,12 +52,12 @@ class CiscoSpark {
    *
    */
   create (params, callback) {
-    if (!this.apiUrl) return callback(new Error('ApiUrl is not set'))
-    if (!params) return callback(new Error('Invalid Params.'))
+    const args = this.getArgs(params, callback)
+    if (!args.params) return callback(new Error('Invalid Params.'))
     return this.request({
       method: 'POST',
-      form: params
-    }, callback)
+      form: args.params
+    }, args.callback)
   }
 
   /**
@@ -64,12 +65,12 @@ class CiscoSpark {
    *
    */
   get (id, callback) {
-    if (!this.apiUrl) return callback(new Error('ApiUrl is not set'))
-    if (!this.checkId(id)) return callback(new Error('ID is missing or in the wrong format'))
+    const args = this.getArgs(id, callback)
+    if (!this.checkId(args.id)) return callback(new Error('ID is missing or in the wrong format'))
     return this.request({
       method: 'GET',
-      url: `${this.apiUrl}/${id}`
-    }, callback)
+      url: `${this.apiUrl}/${args.id}`
+    }, args.callback)
   }
 
   /**
@@ -77,13 +78,13 @@ class CiscoSpark {
    *
    */
   update (id, params, callback) {
-    if (!this.apiUrl) return callback(new Error('ApiUrl is not set'))
-    if (!this.checkId(id)) return callback(new Error('ID is missing or in the wrong format'))
+    const args = this.getArgs(id, params, callback)
+    if (!this.checkId(args.id)) return callback(new Error('ID is missing or in the wrong format'))
     return this.request({
       method: 'PUT',
-      url: `${this.apiUrl}/${id}`,
-      json: params
-    }, callback)
+      url: `${this.apiUrl}/${args.id}`,
+      json: args.params
+    }, args.callback)
   }
 
   /**
@@ -91,12 +92,37 @@ class CiscoSpark {
    *
    */
   delete (id, callback) {
-    if (!this.apiUrl) return callback(new Error('ApiUrl is not set'))
-    if (!this.checkId(id)) return callback(new Error('ID is missing or in the wrong format'))
+    const args = this.getArgs(id, callback)
+    if (!this.checkId(args.id)) return callback(new Error('ID is missing or in the wrong format'))
     return this.request({
       method: 'DELETE',
-      url: `${this.apiUrl}/${id}`
-    }, callback)
+      url: `${this.apiUrl}/${args.id}`
+    }, args.callback)
+  }
+
+  getArgs () {
+    const result = {
+      id: null,
+      params: null,
+      callback: null
+    }
+    for (let i = 0; i < arguments.length; ++i) {
+      if (typeof arguments[i] === 'function') {
+        result.callback = arguments[i]
+      } else if (typeof arguments[i] === 'string' || typeof arguments[i] === 'number') {
+        result.id = arguments[i]
+      } else if (arguments[i] !== null && typeof arguments[i] === 'object') {
+        result.params = arguments[i]
+      }
+    }
+    if (result.id === null && result.params) {
+      if (result.params[this.idName]) {
+        result.id = result.params[this.idName]
+      } else if (result.params.id) {
+        result.id = result.params.id
+      }
+    }
+    return result
   }
 
   set requestCallback (callback) {
