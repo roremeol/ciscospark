@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/joelee/ciscospark.png?label=ready&title=Ready)](https://waffle.io/joelee/ciscospark)
 # Cisco Spark API for Node.js
 
 This is a super-simple lightweight JavaScript wrapper for [Cisco Spark API](https://developer.ciscospark.com/quick-reference.html). 
