@@ -17,8 +17,8 @@ install:
   - npm install -g codecov
 
 script:
-  - (check-node-version --node '>=4.0.0' && ( istanbul cover ./node_modules/mocha/bin/_mocha ./test -- -R spec; codecov )); echo '---'
-  - gulp test:build
+  - bin/test-and-build.sh
+  - codecov
 
 matrix:
   allow_failures:
