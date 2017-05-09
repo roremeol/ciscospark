@@ -2,10 +2,9 @@
 
 This is a super-simple lightweight JavaScript wrapper for [Cisco Spark API](https://developer.ciscospark.com/quick-reference.html). 
 
-[![NPM](https://nodei.co/npm/node-ciscospark.png)](https://nodei.co/npm/node-ciscospark/)
+[![NPM](https://nodei.co/npm/node-ciscospark.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/node-ciscospark/)
 
-[![npm](https://img.shields.io/npm/v/node-ciscospark.svg)](https://www.npmjs.com/package/node-ciscospark) [![Build Status](https://travis-ci.org/joelee/ciscospark.svg?branch=master)](https://travis-ci.org/joelee/ciscospark) [![codecov](https://codecov.io/gh/joelee/ciscospark/branch/master/graph/badge.svg)](https://codecov.io/gh/joelee/ciscospark) [![dependencies Status](https://david-dm.org/joelee/ciscospark/status.svg)](https://david-dm.org/joelee/ciscospark) [![Known Vulnerabilities](https://snyk.io/test/github/joelee/ciscospark/badge.svg)](https://snyk.io/test/github/joelee/ciscospark) [![](https://img.shields.io/github/issues-raw/joelee/ciscospark.svg)](https://github.com/joelee/ciscospark/issues) [![Stories in Ready](https://badge.waffle.io/joelee/ciscospark.png?label=ready&title=Ready)](https://waffle.io/joelee/ciscospark)
-
+[![npm](https://img.shields.io/npm/v/node-ciscospark.svg)](https://www.npmjs.com/package/node-ciscospark) [![Build Status](https://travis-ci.org/joelee/ciscospark.svg?branch=master)](https://travis-ci.org/joelee/ciscospark) [![codecov](https://codecov.io/gh/joelee/ciscospark/branch/master/graph/badge.svg)](https://codecov.io/gh/joelee/ciscospark) [![dependencies Status](https://david-dm.org/joelee/ciscospark/status.svg)](https://david-dm.org/joelee/ciscospark) [![Known Vulnerabilities](https://snyk.io/test/github/joelee/ciscospark/badge.svg)](https://snyk.io/test/github/joelee/ciscospark) [![](https://img.shields.io/github/issues-raw/joelee/ciscospark.svg)](https://github.com/joelee/ciscospark/issues) [![Stories in Ready](https://badge.waffle.io/joelee/ciscospark.png?label=ready&title=Ready)](https://waffle.io/joelee/ciscospark)  [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Installation
 

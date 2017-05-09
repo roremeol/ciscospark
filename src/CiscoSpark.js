@@ -2,7 +2,14 @@
 
 const request = require('request')
 
+/**
+ * Cisco Spark API Abstract Class
+ * @abstract
+ */
 class CiscoSpark {
+  /**
+   * @constructor
+   */
   constructor (accessToken, userAgent, apiUrl) {
     if (accessToken instanceof CiscoSpark) {
       this.accessToken = accessToken.accessToken || process.env.CISCOSPARK_ACCESS_TOKEN
@@ -31,6 +38,10 @@ class CiscoSpark {
     })
   }
 
+  /**
+   * Check Id
+   * @abstract
+   */
   checkId (id) {
     return (id && (typeof id === 'string' || typeof id === 'number'))
   }

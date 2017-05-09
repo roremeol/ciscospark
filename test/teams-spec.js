@@ -1,5 +1,6 @@
 'use strict'
 /* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
 
 const Spark = require('../src')
 const expect = require('chai').expect
@@ -17,7 +18,7 @@ describe('CiscoSpark.teams', function () {
         timestamp: Date.now()
       })
     }
-    this.instance = this.spark.teams;
+    this.instance = this.spark.teams
   })
 
   it('should list Teams', function (done) {

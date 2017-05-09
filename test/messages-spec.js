@@ -1,5 +1,6 @@
 'use strict'
 /* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
 
 const Spark = require('../src')
 const expect = require('chai').expect
@@ -20,7 +21,6 @@ describe('CiscoSpark.messages', function () {
   })
 
   describe('- Chat Room', function () {
-
     it('should send Message to a Room', function (done) {
       const text = 'This is a test message'
       this.spark.messages.createToRoom(TEST_ROOM_ID, text, (err, response) => {

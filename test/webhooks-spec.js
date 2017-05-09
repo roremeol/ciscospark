@@ -1,5 +1,6 @@
 'use strict'
 /* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
 
 const Spark = require('../src')
 const expect = require('chai').expect
@@ -17,7 +18,7 @@ describe('CiscoSpark.webhooks', function () {
         timestamp: Date.now()
       })
     }
-    this.instance = this.spark.webhooks;
+    this.instance = this.spark.webhooks
   })
 
   it('should list Webhooks', function (done) {

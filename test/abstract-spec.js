@@ -1,5 +1,6 @@
 'use strict'
 /* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
 
 const Spark = require('../src')
 const SparkBase = require('../src/CiscoSpark')
@@ -16,13 +17,10 @@ describe('CiscoSpark.abstractMethods', function () {
     sparkx.accessToken = null
     sparkx.userAgent = null
     const spark = new SparkBase(sparkx)
-    spark.apiUrl = 'file:/dev/null'
+    spark.apiUrl = 'http://localhost/dev/null'
     expect(spark.accessToken).to.be.equals(process.env.CISCOSPARK_ACCESS_TOKEN)
     expect(spark.userAgent).to.be.equals(process.env.CISCOSPARK_USER_AGENT)
-    spark.request({method: 'GET'}, (err, body, rsp) => {
-      //console.log(err, body)
-      done()
-    })
+    spark.request({method: 'GET'}, () => { done() })
   })
 
   it('should error if ApiUrl is not set', function (done) {
