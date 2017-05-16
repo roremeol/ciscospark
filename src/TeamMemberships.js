@@ -1,18 +1,31 @@
 'use strict'
 
+/** @ignore */
 const CiscoSpark = require('./CiscoSpark')
 
 /**
  * Spark Teams
- * https://developer.ciscospark.com/resource-team-memberships.html
+ * @see https://developer.ciscospark.com/resource-team-memberships.html
  */
 class TeamMemberships extends CiscoSpark {
+  /**
+   * @constructor
+   * @param {string} [accessToken] - Your Cisco Spark accesstoken
+   * @param {string} [userAgent] - User Agent request header
+   */
   constructor (accessToken, userAgent) {
-    super(accessToken, userAgent)
-    this.apiUrl = 'https://api.ciscospark.com/v1/team/memberships'
+    super(accessToken, userAgent, 'https://api.ciscospark.com/v1/team/memberships')
+    /** @private */
     this.idName = 'membershipId'
   }
 
+  /**
+   * List Team Memberships
+   *
+   * @override
+   * @param {Object} params - see https://developer.ciscospark.com/endpoint-teammemberships-get.html
+   * @param {requestCallback} callback
+   */
   list (params, callback) {
     if (typeof params === 'string') {
       params = { teamId: params }
@@ -20,6 +33,13 @@ class TeamMemberships extends CiscoSpark {
     return super.list(params, callback)
   }
 
+  /**
+   * Create a new Team Membership
+   *
+   * @override
+   * @param {Object} params - see https://developer.ciscospark.com/endpoint-teammemberships-post.html
+   * @param {requestCallback} callback
+   */
   create (params, callback) {
     if (!params || !params.teamId) return callback(new Error('Invalid params. Require teamId'))
     if (!params.personId && !params.personEmail) return callback(new Error('Invalid params. Require personId or personEmail'))

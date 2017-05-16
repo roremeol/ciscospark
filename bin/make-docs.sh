@@ -1,5 +1,5 @@
 #!/bin/bash
 cd "$(dirname $0)/.."
 PATH="$(pwd)/node_modules/.bin:$PATH"
-jsdoc -c ./jsdocs.json
+esdoc -c esdoc.json
 exit 0

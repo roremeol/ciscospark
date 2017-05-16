@@ -10,6 +10,7 @@ const TEST_USERAGENT = '**TestUsergent**'
 const TEST_TEAM_ID = '**TestTeamId**'
 const TEST_MEMBERSHIP_ID = '**TestMemberId**'
 
+/** @test {Memberships} */
 describe('CiscoSpark.memberships', function () {
   before(function () {
     this.spark = new Spark(TEST_ACCESSTOKEN, TEST_USERAGENT)
@@ -22,6 +23,7 @@ describe('CiscoSpark.memberships', function () {
     this.instance = this.spark.memberships
   })
 
+  /** @test {Memberships#list} */
   it('should list Memberships in a Team', function (done) {
     this.instance.list(TEST_TEAM_ID, (err, response) => {
       expect(err).to.be.not.ok
@@ -34,6 +36,7 @@ describe('CiscoSpark.memberships', function () {
     })
   })
 
+  /** @test {Memberships#create} */
   it('should create a Team Membership', function (done) {
     const email = 'test@example.com'
     this.instance.create({
@@ -48,6 +51,7 @@ describe('CiscoSpark.memberships', function () {
     })
   })
 
+  /** @test {Memberships#get} */
   it('should get Team Membership Details', function (done) {
     this.instance.get(TEST_MEMBERSHIP_ID, (err, response) => {
       expect(err).to.be.not.ok
@@ -57,6 +61,7 @@ describe('CiscoSpark.memberships', function () {
     })
   })
 
+  /** @test {Memberships#update} */
   it('should update Team Membership Details', function (done) {
     this.instance.update(TEST_MEMBERSHIP_ID, { isModerator: true }, (err, response) => {
       expect(err).to.be.not.ok
@@ -67,6 +72,7 @@ describe('CiscoSpark.memberships', function () {
     })
   })
 
+  /** @test {Memberships#delete} */
   it('should delete a Team Membership', function (done) {
     this.instance.delete(TEST_MEMBERSHIP_ID, (err, response) => {
       expect(err).to.be.not.ok
@@ -77,6 +83,7 @@ describe('CiscoSpark.memberships', function () {
   })
 
   describe('- Test Errors', function () {
+    /** @test {Memberships#create} */
     it('should error when create without TeamId', function (done) {
       this.instance.create(null, (err, response) => {
         expect(err).to.be.instanceOf(Error)
@@ -85,6 +92,7 @@ describe('CiscoSpark.memberships', function () {
       })
     })
 
+    /** @test {Memberships#create} */
     it('should error when create without PersonId or EMail', function (done) {
       this.instance.create({ teamId: TEST_TEAM_ID }, (err, response) => {
         expect(err).to.be.instanceOf(Error)

@@ -9,6 +9,7 @@ const TEST_ACCESSTOKEN = '**TestAccessToken**'
 const TEST_USERAGENT = '**TestUsergent**'
 const TEST_ROOM_ID = '**TestRoomId**'
 
+/** @test {Messages} */
 describe('CiscoSpark.messages', function () {
   before(function () {
     this.spark = new Spark(TEST_ACCESSTOKEN, TEST_USERAGENT)
@@ -21,6 +22,7 @@ describe('CiscoSpark.messages', function () {
   })
 
   describe('- Chat Room', function () {
+    /** @test {Messages#createToRoom} */
     it('should send Message to a Room', function (done) {
       const text = 'This is a test message'
       this.spark.messages.createToRoom(TEST_ROOM_ID, text, (err, response) => {
@@ -35,6 +37,7 @@ describe('CiscoSpark.messages', function () {
       })
     })
 
+    /** @test {Messages#list} */
     it('should list Messages in a Room', function (done) {
       this.spark.messages.list(TEST_ROOM_ID, (err, response) => {
         expect(err).to.be.not.ok
@@ -45,6 +48,7 @@ describe('CiscoSpark.messages', function () {
       })
     })
 
+    /** @test {Messages#get} */
     it('should get Message information from a Room', function (done) {
       this.spark.messages.get(TEST_ROOM_ID, (err, response) => {
         expect(err).to.be.not.ok
@@ -54,6 +58,7 @@ describe('CiscoSpark.messages', function () {
       })
     })
 
+    /** @test {Messages#delete} */
     it('should delete a Message from a Room', function (done) {
       this.spark.messages.delete(TEST_ROOM_ID, (err, response) => {
         expect(err).to.be.not.ok
@@ -65,6 +70,7 @@ describe('CiscoSpark.messages', function () {
   })
 
   describe('- DirectToPerson', function () {
+    /** @test {Messages#createToPersonId} */
     it('should send Message to a Person via ID', function (done) {
       const TEST_ID = '**TestPersonId**'
       const text = 'This is a test message'
@@ -77,6 +83,7 @@ describe('CiscoSpark.messages', function () {
       })
     })
 
+    /** @test {Messages#createToPersonEmail} */
     it('should send Message to a Person via Email', function (done) {
       const TEST_ID = 'test@example.com'
       const text = 'This is a test message'
@@ -91,6 +98,7 @@ describe('CiscoSpark.messages', function () {
   })
 
   describe('- Test Errors', function () {
+    /** @test {Messages#list} */
     it('should error when list without RoomId', function (done) {
       this.spark.messages.list(null, (err, response) => {
         expect(err).to.be.instanceOf(Error)
@@ -99,6 +107,7 @@ describe('CiscoSpark.messages', function () {
       })
     })
 
+    /** @test {Messages#create} */
     it('should error when create without RoomId', function (done) {
       const text = 'This is a test message'
       this.spark.messages.create({ markdown: text }, (err, response) => {
@@ -108,6 +117,7 @@ describe('CiscoSpark.messages', function () {
       })
     })
 
+    /** @test {Messages#get} */
     it('should error when get without MessageId', function (done) {
       this.spark.messages.get(null, (err, response) => {
         expect(err).to.be.instanceOf(Error)
@@ -116,6 +126,7 @@ describe('CiscoSpark.messages', function () {
       })
     })
 
+    /** @test {Messages#delete} */
     it('should error when delete without MessageId', function (done) {
       this.spark.messages.delete(null, (err, response) => {
         expect(err).to.be.instanceOf(Error)

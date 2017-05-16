@@ -1,5 +1,6 @@
 'use strict'
 
+/** @ignore */
 const request = require('request')
 
 /**
@@ -8,13 +9,33 @@ const request = require('request')
  */
 class CiscoSpark {
   /**
+   * Constructor for abstract class
    * @constructor
+   * @param {?string} accessToken - Your Cisco Spark accesstoken
+   * @param {?string} userAgent - User Agent request header
+   * @param {?string} apiUrl - API Url
    */
   constructor (accessToken, userAgent, apiUrl) {
     if (accessToken instanceof CiscoSpark) {
+      /**
+       * @type {string}
+       * @protected
+       */
       this.accessToken = accessToken.accessToken || process.env.CISCOSPARK_ACCESS_TOKEN
+      /**
+       * @type {string}
+       * @protected
+       */
       this.userAgent = userAgent || accessToken.userAgent || process.env.CISCOSPARK_USER_AGENT
+      /**
+       * @type {string}
+       * @protected
+       */
       this.apiUrl = apiUrl || accessToken.apiUrl
+      /**
+       * @type {?requestCallback}
+       * @private
+       */
       this._requestCallback = accessToken._requestCallback
     } else {
       this.accessToken = accessToken || process.env.CISCOSPARK_ACCESS_TOKEN
@@ -22,9 +43,31 @@ class CiscoSpark {
       this.apiUrl = apiUrl
       this._requestCallback = null
     }
+    /**
+     * @type {string}
+     * @protected
+     */
     this.idName = 'id'
   }
 
+  /**
+   * @external {HttpResponse} https://nodejs.org/api/http.html#http_class_http_serverresponse
+   */
+
+  /**
+   * Request Callback
+   * @typedef {function} requestCallback
+   * @param {Error} error - Error object
+   * @param {Object} body - Response body
+   * @param {HttpResponse} response - Http Server Response
+   */
+
+  /**
+   * Make a request
+   * @param {Object} options - Options for Request
+   * @param {requestCallback} callback - Callback
+   * @protected
+   */
   request (options, callback) {
     if (!this.apiUrl) return callback(new Error('ApiUrl is not set'))
     if (!options.url && this.apiUrl) options.url = this.apiUrl
@@ -41,6 +84,8 @@ class CiscoSpark {
   /**
    * Check Id
    * @abstract
+   * @param {string} id - Id string to be checked
+   * @return {boolean} - Is Id valid?
    */
   checkId (id) {
     return (id && (typeof id === 'string' || typeof id === 'number'))
@@ -48,11 +93,12 @@ class CiscoSpark {
 
   /**
    * List objects
-   *
+   * @param {Object} params - Parameters of request
+   * @param {requestCallback} callback
    */
   list (params, callback) {
     const args = this.getArgs(params, callback)
-    return this.request({
+    this.request({
       method: 'GET',
       qs: args.params
     }, args.callback)
@@ -60,12 +106,13 @@ class CiscoSpark {
 
   /**
    * Create an object
-   *
+   * @param {Object} params - Parameters of request
+   * @param {requestCallback} callback
    */
   create (params, callback) {
     const args = this.getArgs(params, callback)
     if (!args.params) return callback(new Error('Invalid Params.'))
-    return this.request({
+    this.request({
       method: 'POST',
       form: args.params
     }, args.callback)
@@ -73,12 +120,13 @@ class CiscoSpark {
 
   /**
    * Get an object
-   *
+   * @param {string} id - Id of the object
+   * @param {requestCallback} callback
    */
   get (id, callback) {
     const args = this.getArgs(id, callback)
     if (!this.checkId(args.id)) return callback(new Error('ID is missing or in the wrong format'))
-    return this.request({
+    this.request({
       method: 'GET',
       url: `${this.apiUrl}/${args.id}`
     }, args.callback)
@@ -86,12 +134,14 @@ class CiscoSpark {
 
   /**
    * Update an object
-   *
+   * @param {string} id - Id of the object
+   * @param {Object} params - Parameters of request
+   * @param {requestCallback} callback
    */
   update (id, params, callback) {
     const args = this.getArgs(id, params, callback)
     if (!this.checkId(args.id)) return callback(new Error('ID is missing or in the wrong format'))
-    return this.request({
+    this.request({
       method: 'PUT',
       url: `${this.apiUrl}/${args.id}`,
       json: args.params
@@ -100,17 +150,21 @@ class CiscoSpark {
 
   /**
    * Delete an Object
-   *
+   * @param {string} id - Id of the object
+   * @param {requestCallback} callback
    */
   delete (id, callback) {
     const args = this.getArgs(id, callback)
     if (!this.checkId(args.id)) return callback(new Error('ID is missing or in the wrong format'))
-    return this.request({
+    this.request({
       method: 'DELETE',
       url: `${this.apiUrl}/${args.id}`
     }, args.callback)
   }
 
+  /**
+   * @private
+   */
   getArgs () {
     const result = {
       id: null,
@@ -136,6 +190,9 @@ class CiscoSpark {
     return result
   }
 
+  /**
+   * @type {requestCallback}
+   */
   set requestCallback (callback) {
     this._requestCallback = callback
   }

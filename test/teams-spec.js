@@ -9,6 +9,7 @@ const TEST_ACCESSTOKEN = '**TestAccessToken**'
 const TEST_USERAGENT = '**TestUsergent**'
 const TEST_TEAM_ID = '**TestTeamId**'
 
+/** @test {Teams} */
 describe('CiscoSpark.teams', function () {
   before(function () {
     this.spark = new Spark(TEST_ACCESSTOKEN, TEST_USERAGENT)
@@ -21,6 +22,7 @@ describe('CiscoSpark.teams', function () {
     this.instance = this.spark.teams
   })
 
+  /** @test {Teams#list} */
   it('should list Teams', function (done) {
     const max = 99
     this.instance.list({ max: max }, (err, response) => {
@@ -34,6 +36,7 @@ describe('CiscoSpark.teams', function () {
     })
   })
 
+  /** @test {Teams#create} */
   it('should create a Team', function (done) {
     const name = 'Test Team'
     this.instance.create({
@@ -46,6 +49,7 @@ describe('CiscoSpark.teams', function () {
     })
   })
 
+  /** @test {Teams#get} */
   it('should get Team Details', function (done) {
     this.instance.get(TEST_TEAM_ID, (err, response) => {
       expect(err).to.be.not.ok
@@ -55,6 +59,7 @@ describe('CiscoSpark.teams', function () {
     })
   })
 
+  /** @test {Teams#update} */
   it('should update Team Details', function (done) {
     this.instance.update(TEST_TEAM_ID, { name: 'new name' }, (err, response) => {
       expect(err).to.be.not.ok
@@ -65,6 +70,7 @@ describe('CiscoSpark.teams', function () {
     })
   })
 
+  /** @test {Teams#delete} */
   it('should delete a Team Membership', function (done) {
     this.instance.delete(TEST_TEAM_ID, (err, response) => {
       expect(err).to.be.not.ok

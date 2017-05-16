@@ -9,7 +9,9 @@ chai.use(require('chai-string'))
 const expect = chai.expect
 const async = require('async')
 
+/** @test {CiscoSpark} */
 describe('CiscoSpark.abstractMethods', function () {
+  /** @test {CiscoSpark#request} */
   it('should get token from Environment Variable', function (done) {
     process.env.CISCOSPARK_ACCESS_TOKEN = '***Test Token***'
     process.env.CISCOSPARK_USER_AGENT = '***Test Agent***'

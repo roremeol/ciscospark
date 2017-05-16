@@ -1,23 +1,30 @@
 'use strict'
 
+/** @ignore */
 const CiscoSpark = require('./CiscoSpark')
 
 /**
  * Spark Rooms
- * https://developer.ciscospark.com/resource-rooms.html
+ * @see https://developer.ciscospark.com/resource-rooms.html
  */
 class Rooms extends CiscoSpark {
+  /**
+   * @constructor
+   * @param {string} [accessToken] - Your Cisco Spark accesstoken
+   * @param {string} [userAgent] - User Agent request header
+   */
   constructor (accessToken, userAgent) {
-    super(accessToken, userAgent)
-    this.apiUrl = 'https://api.ciscospark.com/v1/rooms'
+    super(accessToken, userAgent, 'https://api.ciscospark.com/v1/rooms')
+    /** @private */
     this.idName = 'roomId'
   }
 
   /**
    * List Rooms
    *
-   * @param params see https://developer.ciscospark.com/endpoint-rooms-get.html
-   * @param callback
+   * @override
+   * @param {Object} params - see https://developer.ciscospark.com/endpoint-rooms-get.html
+   * @param {requestCallback} callback
    */
   list (params, callback) {
     if (typeof params === 'string') {
@@ -29,6 +36,9 @@ class Rooms extends CiscoSpark {
   /**
    * Create a Room
    *
+   * @override
+   * @param {Object} params - see https://developer.ciscospark.com/endpoint-rooms-post.html
+   * @param {requestCallback} callback
    */
   create (params, callback) {
     if (typeof params === 'string') {

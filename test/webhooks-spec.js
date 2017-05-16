@@ -9,6 +9,7 @@ const TEST_ACCESSTOKEN = '**TestAccessToken**'
 const TEST_USERAGENT = '**TestUsergent**'
 const TEST_WEBHOOK_ID = '**TestWebhookId**'
 
+/** @test {Webhooks} */
 describe('CiscoSpark.webhooks', function () {
   before(function () {
     this.spark = new Spark(TEST_ACCESSTOKEN, TEST_USERAGENT)
@@ -21,6 +22,7 @@ describe('CiscoSpark.webhooks', function () {
     this.instance = this.spark.webhooks
   })
 
+  /** @test {Webhooks#list} */
   it('should list Webhooks', function (done) {
     const max = 99
     this.instance.list({ max: max }, (err, response) => {
@@ -34,6 +36,7 @@ describe('CiscoSpark.webhooks', function () {
     })
   })
 
+  /** @test {Webhooks#create} */
   it('should create a Webhook', function (done) {
     const name = 'Test Webhook'
     this.instance.create({
@@ -50,6 +53,7 @@ describe('CiscoSpark.webhooks', function () {
     })
   })
 
+  /** @test {Webhooks#get} */
   it('should get Team Details', function (done) {
     this.instance.get(TEST_WEBHOOK_ID, (err, response) => {
       expect(err).to.be.not.ok
@@ -59,6 +63,7 @@ describe('CiscoSpark.webhooks', function () {
     })
   })
 
+  /** @test {Webhooks#update} */
   it('should update Team Details', function (done) {
     this.instance.update(TEST_WEBHOOK_ID, { name: 'new name' }, (err, response) => {
       expect(err).to.be.not.ok
@@ -69,6 +74,7 @@ describe('CiscoSpark.webhooks', function () {
     })
   })
 
+  /** @test {Webhooks#delete} */
   it('should delete a Team Membership', function (done) {
     this.instance.delete(TEST_WEBHOOK_ID, (err, response) => {
       expect(err).to.be.not.ok

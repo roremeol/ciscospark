@@ -1,0 +1,35 @@
+{
+  "title": "Cisco Spark",
+  "source": "./src",
+  "destination": "./docs",
+  "test": {
+    "type": "mocha",
+    "source": "./test"
+  },
+  "access": ["public", "protected"],
+  "autoPrivate": true,
+  "unexportIdentifier": true,
+  "undocumentIdentifier": true,
+  "builtinExternal": true,
+  "index": "./README.md",
+  "package": "./package.json",
+  "coverage": true,
+  "includeSource": true,
+  "manual": {
+    "globalIndex": false,
+    "index": "README.md",
+    "license": "LICENSE.md",
+    "coverage": "../coverage/lcov-report/"
+  },
+  "lint": true,
+  "experimentalProposal": {
+    "classProperties": true,
+    "objectRestSpread": true,
+    "decorators": true,
+    "doExpressions": true,
+    "functionBind": true,
+    "asyncGenerators": true,
+    "exportExtensions": true,
+    "dynamicImport": true
+  }
+}

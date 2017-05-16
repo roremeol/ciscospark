@@ -10,6 +10,7 @@ const TEST_USERAGENT = '**TestUsergent**'
 const TEST_PERSON_ID = 12345678
 const TEST_EMAIL = 'test@example.com'
 
+/** @test {People} */
 describe('CiscoSpark.people', function () {
   before(function () {
     this.spark = new Spark(TEST_ACCESSTOKEN, TEST_USERAGENT)
@@ -22,6 +23,7 @@ describe('CiscoSpark.people', function () {
     this.instance = this.spark.people
   })
 
+  /** @test {People#list} */
   it('should list People in the organisation', function (done) {
     this.instance.list(TEST_EMAIL, (err, response) => {
       expect(err).to.be.not.ok
@@ -34,6 +36,7 @@ describe('CiscoSpark.people', function () {
     })
   })
 
+  /** @test {People#create} */
   it('should create a new Person', function (done) {
     const displayName = 'John Doe'
     this.instance.create({
@@ -48,6 +51,7 @@ describe('CiscoSpark.people', function () {
     })
   })
 
+  /** @test {People#get} */
   it('should get a Person Details', function (done) {
     this.instance.get(TEST_PERSON_ID, (err, response) => {
       expect(err).to.be.not.ok
@@ -57,6 +61,7 @@ describe('CiscoSpark.people', function () {
     })
   })
 
+  /** @test {People#me} */
   it('should get my own Details', function (done) {
     this.instance.me((err, response) => {
       expect(err).to.be.not.ok
@@ -66,6 +71,7 @@ describe('CiscoSpark.people', function () {
     })
   })
 
+  /** @test {People#update} */
   it('should update a Person Details', function (done) {
     this.instance.update(TEST_PERSON_ID, { displayName: 'John Doe' }, (err, response) => {
       expect(err).to.be.not.ok
@@ -76,6 +82,7 @@ describe('CiscoSpark.people', function () {
     })
   })
 
+  /** @test {People#delete} */
   it('should delete a Person', function (done) {
     this.instance.delete(TEST_PERSON_ID, (err, response) => {
       expect(err).to.be.not.ok
@@ -86,6 +93,7 @@ describe('CiscoSpark.people', function () {
   })
 
   describe('- Test Errors', function () {
+    /** @test {People#list} */
     it('should error when list without details', function (done) {
       this.instance.list(null, (err, response) => {
         expect(err).to.be.instanceOf(Error)
