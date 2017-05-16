@@ -15,12 +15,6 @@
   "package": "./package.json",
   "coverage": true,
   "includeSource": true,
-  "manual": {
-    "globalIndex": false,
-    "index": "README.md",
-    "license": "LICENSE.md",
-    "coverage": "../coverage/lcov-report/"
-  },
   "lint": true,
   "experimentalProposal": {
     "classProperties": true,

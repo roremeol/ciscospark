@@ -24,6 +24,7 @@ class People extends CiscoSpark {
    * List people in your organization. For most users, either the email or a Display Name parameters are required.
    * Admin users can omit these fields and list all users in their organization.
    *
+   * @override
    * @param {Object} params - see https://developer.ciscospark.com/endpoint-people-get.html
    * @param {requestCallback} callback
    */

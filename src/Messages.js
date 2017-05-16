@@ -25,7 +25,7 @@ class Messages extends CiscoSpark {
    * The list sorts the messages in descending order by creation date.
    *
    * @override
-   * @param {Object} params - see https://developer.ciscospark.com/endpoint-messages-get.html
+   * @param {MessageListParams} params - see https://developer.ciscospark.com/endpoint-messages-get.html
    * @param {requestCallback} callback
    */
   list (params, callback) {
@@ -44,7 +44,7 @@ class Messages extends CiscoSpark {
    * Posts a plain text message, and optionally, a media content attachment, to a room.
    *
    * @override
-   * @param {Object} params - see https://developer.ciscospark.com/endpoint-messages-post.html
+   * @param {MessageCreateParams} params - see https://developer.ciscospark.com/endpoint-messages-post.html
    * @param {requestCallback} callback
    */
   create (params, callback) {
@@ -59,7 +59,7 @@ class Messages extends CiscoSpark {
    * Create a Message to a Room
    *
    * @param {string} roomId - Spark Room ID
-   * @param {string|Object} params - Markdown formatted message string or Request parameters object
+   * @param {string|MessageCreateParams} params - Markdown formatted message string or Request parameters object
    * @param {requestCallback} callback
    */
   createToRoom (roomId, params, callback) {
@@ -72,7 +72,7 @@ class Messages extends CiscoSpark {
    * Create a Message for a Person
    *
    * @param {string} personId - Spark Person ID
-   * @param {string|Object} params - Markdown formatted message string or Request parameters object
+   * @param {string|MessageCreateParams} params - Markdown formatted message string or Request parameters object
    * @param {requestCallback} callback
    */
   createToPersonId (personId, params, callback) {
@@ -85,7 +85,7 @@ class Messages extends CiscoSpark {
    * Create a Message to a person via email
    *
    * @param {string} email - Email address
-   * @param {string|Object} params - Markdown formatted message string or Request parameters object
+   * @param {string|MessageCreateParams} params - Markdown formatted message string or Request parameters object
    * @param {requestCallback} callback
    */
   createToPersonEmail (email, params, callback) {
@@ -124,3 +124,22 @@ class Messages extends CiscoSpark {
 }
 
 module.exports = Messages
+
+/**
+ * @typedef {Object} MessageListParams
+ * @property {string} roomId - The Room ID
+ * @property {string} [mentionedPeople] - filter messages which has mentioned Person ID
+ * @property {string} [before] - list Messages before time in ISO8601 format
+ * @property {string} [beforeMessage] - list Messages before Message ID
+ * @property {number} [max] - Limit maximum messages in response
+ */
+
+/**
+ * @typedef {Object} MessageCreateParams
+ * @property {string} roomId - The Room ID
+ * @property {string} toPersonId - Person ID
+ * @property {string} toPersonEmail - Email Address
+ * @property {string} text - Plain Message text
+ * @property {string} markdown - Markdown formatted Message text
+ * @property {Array(string)} files - Public URL link to the files
+ */

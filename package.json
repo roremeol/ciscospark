@@ -1,6 +1,6 @@
 {
   "name": "node-ciscospark",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "Super-Simple Lightweight Javascript wrapper for Cisco Spark API",
   "homepage": "https://github.com/joelee/ciscospark",
   "main": "build/src/index.js",
@@ -18,7 +18,7 @@
     "spark",
     "cisco"
   ],
-  "author": "Joseph Lee <joselee2@cisco.com> (https://uk.linkedin.com/in/joeworks)",
+  "author": "Joseph Lee (https://uk.linkedin.com/in/joeworks)",
   "license": "MIT",
   "files": [
     "build",
@@ -41,8 +41,8 @@
     "codecov": "^2.1.0",
     "esdoc": "^0.5.2",
     "istanbul": "^0.4.5",
-    "mocha": "^3.3.0",
-    "standard": "*"
+    "mocha": "^3.4.1",
+    "standard": "^10.0.2"
   },
   "standard": {
     "ignore": [

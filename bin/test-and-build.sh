@@ -2,18 +2,18 @@
 cd "$(dirname $0)/.."
 PATH="$(pwd)/node_modules/.bin:$PATH"
 
-echo
-echo "# Check coding standard..."
-standard
-if [ $? -ne 0 ]; then
-  echo "FAIL: Coding standard" 1>&2
-  exit 1
-fi
-
-echo
-echo "# Run Test on Source and Create Code Coverage Report"
 check-node-version --node '>=4.0.0'
 if [ $? -eq 0 ]; then
+  echo
+  echo "# Check coding standard..."
+  standard
+  if [ $? -ne 0 ]; then
+    echo "FAIL: Coding standard" 1>&2
+    exit 1
+  fi
+
+  echo
+  echo "# Run Test on Source and Create Code Coverage Report"
   istanbul cover ./node_modules/mocha/bin/_mocha ./test -- -R spec
   if [ $? -ne 0 ]; then
     echo "FAIL: Test Coverage" 1>&2
