@@ -144,7 +144,7 @@ where:
 
 See: https://doc.esdoc.org/github.com/joelee/ciscospark/
 
-[!(https://doc.esdoc.org/github.com/joelee/ciscospark/badge.svg)](https://doc.esdoc.org/github.com/joelee/ciscospark/)
+[![Documentation](https://doc.esdoc.org/github.com/joelee/ciscospark/badge.svg)](https://doc.esdoc.org/github.com/joelee/ciscospark/)
 
 
 ## License
