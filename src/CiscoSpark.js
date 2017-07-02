@@ -78,7 +78,7 @@ class CiscoSpark {
     options.headers['Accept'] = 'application/json'
     if (typeof this._requestCallback === 'function') return this._requestCallback(options, callback)
     return request(options, (error, response, body) => {
-      const next = this.getNext(options, response.headers)
+      const next = this.getNext(options, response ? response.headers || {} : {})
       callback(error, body, response, next)
     })
   }
