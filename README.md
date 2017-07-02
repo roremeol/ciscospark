@@ -50,6 +50,26 @@ spark.rooms.list({
 });
 ```
 
+### [Pagination Support](https://developer.ciscospark.com/pagination.html)
+
+```javascript
+let pageNum = 0;
+
+function processResponse(err, result, response, next) {
+  if (err) console.error(err);
+  ++pageNum;
+  console.log('Page:', pageNum);
+  // Process result
+  if (next) {
+    next(processResponse);
+  }
+}
+
+spark.people.list({
+  displayName: 'joe'
+}, processResponse);
+```
+
 ## Supported [Spark API](https://developer.ciscospark.com/quick-reference.html)
 
 ### [Messages](https://developer.ciscospark.com/resource-messages.html)

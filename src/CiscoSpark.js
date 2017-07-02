@@ -60,6 +60,7 @@ class CiscoSpark {
    * @param {Error} error - Error object
    * @param {Object} body - Response body
    * @param {HttpResponse} response - Http Server Response
+   * @param {} next - Next iteration if available
    */
 
   /**
@@ -77,8 +78,38 @@ class CiscoSpark {
     options.headers['Accept'] = 'application/json'
     if (typeof this._requestCallback === 'function') return this._requestCallback(options, callback)
     return request(options, (error, response, body) => {
-      callback(error, body, response)
+      const next = this.getNext(options, response.headers)
+      callback(error, body, response, next)
     })
+  }
+
+  /**
+   * Pagination: Next Iteration Callback
+   * @typedef {function} nextIterationCallback
+   * @param {requestCallback} callback - Callback
+   */
+
+  /**
+   * Get Next Pagination based on Response header, if available
+   * @param {Object} options
+   * @param {Object} headers - HTTP Response headers
+   * @return {nextIterationCallback}
+   * @protected
+   */
+  getNext (options, headers) {
+    if (!headers['Link']) return null
+    const re = /<(https:\/\/.+)>; rel="next"/i
+    let links = headers['Link']
+    if (Array.isArray(links)) links = links.join('|')
+    const result = re.exec(links)
+    if (!result || !result[1]) return null
+    options.url = result[1]
+    return (callback) => {
+      return request(options, (error, response, body) => {
+        const next = this.getNext(options, response.headers)
+        callback(error, body, response, next)
+      })
+    }
   }
 
   /**
