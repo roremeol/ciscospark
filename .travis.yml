@@ -22,7 +22,7 @@ install:
 
 script:
   - bin/test-and-build.sh
-  - (check-node-version --node '>=4.0.0' && ./node_modules/.bin/codecov); echo '---'
+  - (check-node-version --node '>=8.0.0' && codecov); echo '---'
 
 matrix:
   allow_failures:
