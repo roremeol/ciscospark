@@ -14,7 +14,7 @@ if [ $? -eq 0 ]; then
 
   echo
   echo "# Run Test on Source and Create Code Coverage Report"
-  istanbul cover ./node_modules/mocha/bin/_mocha ./test -- -R spec
+  istanbul cover mocha ./test -- -R spec
   if [ $? -ne 0 ]; then
     echo "FAIL: Test Coverage" 1>&2
     exit 2

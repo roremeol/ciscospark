@@ -1,6 +1,8 @@
 sudo: false
 language: node_js
 
+env:
+  - NODE_ENV=production
 node_js:
   - "0.10"
   - "0.12"
@@ -13,6 +15,8 @@ before_install:
   - travis_retry npm install
 
 install:
+  - npm install -g mocha-cli istanbul standard
+  - npm install -g babel-cli babel-preset-env babel-preset-es2015
   - npm install -g check-node-version
   - npm install -g codecov
 
@@ -24,3 +28,4 @@ matrix:
   allow_failures:
     - node_js: "0.10"
     - node_js: "0.12"
+    - node_js: "4"
