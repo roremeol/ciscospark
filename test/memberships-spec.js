@@ -7,7 +7,7 @@ const expect = require('chai').expect
 
 const TEST_ACCESSTOKEN = '**TestAccessToken**'
 const TEST_USERAGENT = '**TestUsergent**'
-const TEST_TEAM_ID = '**TestTeamId**'
+const TEST_ROOM_ID = '**TestRoomId**'
 const TEST_MEMBERSHIP_ID = '**TestMemberId**'
 
 /** @test {Memberships} */
@@ -24,14 +24,14 @@ describe('CiscoSpark.memberships', function () {
   })
 
   /** @test {Memberships#list} */
-  it('should list Memberships in a Team', function (done) {
-    this.instance.list(TEST_TEAM_ID, (err, response) => {
+  it('should list Memberships in a Room', function (done) {
+    this.instance.list(TEST_ROOM_ID, (err, response) => {
       expect(err).to.be.not.ok
       expect(response.options.headers.Authorization).to.be.equal('Bearer ' + TEST_ACCESSTOKEN)
       expect(response.options.headers['User-Agent']).to.be.equal(TEST_USERAGENT)
       expect(response.options.url).to.be.equal(this.instance.apiUrl)
       expect(response.options.method).to.be.equal('GET')
-      expect(response.options.qs.teamId).to.be.equal(TEST_TEAM_ID)
+      expect(response.options.qs.roomId).to.be.equal(TEST_ROOM_ID)
       done()
     })
   })
@@ -40,12 +40,12 @@ describe('CiscoSpark.memberships', function () {
   it('should create a Team Membership', function (done) {
     const email = 'test@example.com'
     this.instance.create({
-      teamId: TEST_TEAM_ID,
+      roomId: TEST_ROOM_ID,
       personEmail: email
     }, (err, response) => {
       expect(err).to.be.not.ok
       expect(response.options.method).to.be.equal('POST')
-      expect(response.options.form.teamId).to.be.equal(TEST_TEAM_ID)
+      expect(response.options.form.roomId).to.be.equal(TEST_ROOM_ID)
       expect(response.options.form.personEmail).to.be.equal(email)
       done()
     })
@@ -94,7 +94,7 @@ describe('CiscoSpark.memberships', function () {
 
     /** @test {Memberships#create} */
     it('should error when create without PersonId or EMail', function (done) {
-      this.instance.create({ teamId: TEST_TEAM_ID }, (err, response) => {
+      this.instance.create({ roomId: TEST_ROOM_ID }, (err, response) => {
         expect(err).to.be.instanceOf(Error)
         expect(response).to.be.not.ok
         done()
