@@ -2,6 +2,12 @@
 cd "$(dirname $0)/.."
 PATH="$(pwd)/node_modules/.bin:$PATH"
 
+if [ "$1" == "--nocover" ]; then
+  NoCoverage=1
+else
+  NoCoverage=0
+fi
+
 check-node-version --node '>=4.0.0'
 if [ $? -eq 0 ]; then
   echo
@@ -12,12 +18,22 @@ if [ $? -eq 0 ]; then
     exit 1
   fi
 
-  echo
-  echo "# Run Test on Source and Create Code Coverage Report"
-  istanbul cover mocha ./test -- -R spec
-  if [ $? -ne 0 ]; then
-    echo "FAIL: Test Coverage" 1>&2
-    exit 2
+  if [ "$NoCoverage" == "1" ]; then
+    echo
+    echo "# Run Test on Source"
+    _mocha ./test -R spec
+    if [ $? -ne 0 ]; then
+      echo "FAIL: Test" 1>&2
+      exit 2
+    fi
+  else
+    echo
+    echo "# Run Test on Source and Create Code Coverage Report"
+    istanbul cover ./node_modules/mocha/bin/_mocha ./test -- -R spec
+    if [ $? -ne 0 ]; then
+      echo "FAIL: Test Coverage" 1>&2
+      exit 2
+    fi
   fi
 fi
 

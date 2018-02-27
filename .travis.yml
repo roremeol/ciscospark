@@ -15,13 +15,13 @@ before_install:
   - travis_retry npm install
 
 install:
-  - npm install -g mocha-cli istanbul standard
-  - npm install -g babel-cli babel-preset-env babel-preset-es2015
+  - npm install mocha istanbul standard
+  - npm install babel-cli babel-preset-env babel-preset-es2015
   - npm install -g check-node-version
   - npm install -g codecov
 
 script:
-  - bin/test-and-build.sh
+  - bin/test-and-build.sh --ci
   - (check-node-version --node '>=8.0.0' && codecov); echo '---'
 
 matrix:

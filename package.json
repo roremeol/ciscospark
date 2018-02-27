@@ -1,6 +1,6 @@
 {
   "name": "node-ciscospark",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Super-Simple Lightweight Javascript wrapper for Cisco Spark API",
   "homepage": "https://github.com/joelee/ciscospark",
   "main": "build/src/index.js",
