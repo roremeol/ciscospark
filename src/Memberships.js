@@ -5,7 +5,7 @@ const CiscoSpark = require('./CiscoSpark')
 
 /**
  * Spark Memberships
- * @see https://developer.ciscospark.com/resource-rooms.html
+ * @see https://developer.ciscospark.com/resource-memberships.html
  */
 class Memberships extends CiscoSpark {
   /**
@@ -27,7 +27,7 @@ class Memberships extends CiscoSpark {
    */
   list (params, callback) {
     if (typeof params === 'string') {
-      params = { teamId: params }
+      params = { roomId: params }
     }
     return super.list(params, callback)
   }
@@ -39,7 +39,7 @@ class Memberships extends CiscoSpark {
    * @param {requestCallback} callback
    */
   create (params, callback) {
-    if (!params || !params.teamId) return callback(new Error('Invalid params. Require teamId'))
+    if (!params || !params.roomId) return callback(new Error('Invalid params. Require roomId'))
     if (!params.personId && !params.personEmail) return callback(new Error('Invalid params. Require personId or personEmail'))
     return super.create(params, callback)
   }
