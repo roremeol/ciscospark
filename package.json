@@ -2,7 +2,7 @@
   "name": "node-ciscospark-qm",
   "version": "1.0.3",
   "description": "Super-Simple Lightweight Javascript wrapper for Cisco Spark API",
-  "homepage": "https://github.com/joelee/ciscospark",
+  "homepage": "https://github.com/roremeol/ciscospark",
   "main": "build/src/index.js",
   "scripts": {
     "test": "bin/test-coverage.sh",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:joelee/ciscospark.git"
+    "url": "git@github.com:roremeol/ciscospark.git"
   },
   "keywords": [
     "ciscospark",
