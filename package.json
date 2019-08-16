@@ -1,5 +1,5 @@
 {
-  "name": "node-ciscospark-qm",
+  "name": "node-ciscospark",
   "version": "1.0.3",
   "description": "Super-Simple Lightweight Javascript wrapper for Cisco Spark API",
   "homepage": "https://github.com/roremeol/ciscospark",
