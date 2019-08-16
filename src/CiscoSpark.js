@@ -114,7 +114,7 @@ class CiscoSpark {
     if (!args.params) return callback(new Error('Invalid Params.'))
     this.request({
       method: 'POST',
-      form: args.params
+      json: args.params
     }, args.callback)
   }
 
