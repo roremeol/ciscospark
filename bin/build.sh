@@ -18,19 +18,6 @@ if [ $? -ne 0 ]; then
   exit 4
 fi
 
-if [ "$1" == "--publish" ]; then
-  echo
-  echo "# Publish to NPM"
-  npm publish .
-  if [ $? -ne 0 ]; then
-    echo "FAIL: Publish to NPM" 1>&2
-    exit 9
-  fi
-  echo
-  echo "PASS: TEST, BUILD and DEPLOY are SUCCESSFUL!"
-  exit 0
-fi
-
 echo
 echo "PASS: BUILD are SUCCESSFUL!"
 exit 0
