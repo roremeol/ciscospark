@@ -5,7 +5,7 @@
   "homepage": "https://github.com/roremeol/ciscospark",
   "main": "build/src/index.js",
   "scripts": {
-    "test": "bin/test.sh",
+    "install": "npm install . && ./bin/build.sh",
     "build": "bin/build.sh"
   },
   "repository": {
