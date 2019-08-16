@@ -5,10 +5,8 @@
   "homepage": "https://github.com/roremeol/ciscospark",
   "main": "build/src/index.js",
   "scripts": {
-    "install": "./bin/build.sh",
-    "test": "bin/test-coverage.sh",
-    "build": "bin/build.sh",
-    "docs": "bin/make-docs.sh"
+    "test": "bin/test.sh",
+    "build": "bin/build.sh"
   },
   "repository": {
     "type": "git",
