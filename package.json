@@ -6,7 +6,7 @@
   "main": "build/src/index.js",
   "scripts": {
     "test": "bin/test-coverage.sh",
-    "build": "bin/test-and-build.sh",
+    "build": "bin/build.sh",
     "docs": "bin/make-docs.sh"
   },
   "repository": {
@@ -28,11 +28,12 @@
     "url": "https://github.com/joelee/ciscospark/issues"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "request": "^2.83.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "chai": "^4.1.2",
     "chai-string": "^1.4.0",
